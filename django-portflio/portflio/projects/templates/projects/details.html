@@ -1,0 +1,12 @@
+{% extends 'projects/base.html' %}
+{%load static%}
+
+{% block content %}
+<title>Project based on PK</title>
+<h1>{{project.title}} </h1>
+<img src="{% static project.image %}" alt="{{project.description}} ">
+<h1>{{project.description}}</h1>
+<p>{{project.technology}}</p>
+
+
+{% endblock content %}

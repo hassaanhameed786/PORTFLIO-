@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <header class="blog-header">
+        <h1 class="blog-title">{{ post.title }}</h1>
+        <p class="blog-date">Published on {{ post.publish_date }}</p>
+    </header>
+    <div class="featured-image">
+        <img src="{{ post.featured_image.url }}" alt="{{ post.title }}">
+    </div>
+    <div class="blog-content">
+        {{ post.content|safe }}
+    </div>
+    <section class="comments">
+        <h2>Comments</h2>
+        {% for comment in post.comments %}
+            <div class="comment">
+                <p class="comment-author">{{ comment.author }}</p>
+                <p class="comment-text">{{ comment.text }}</p>
+            </div>
+        {% endfor %}
+    </section>
+</body>
+</html>

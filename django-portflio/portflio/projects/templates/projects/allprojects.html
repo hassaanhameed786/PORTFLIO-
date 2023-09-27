@@ -1,0 +1,64 @@
+    {% extends 'projects/base.html' %}
+    {%load static %}
+    {% block content %}
+                  
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Project List</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f5f5f5;
+            }
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            .project {
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+            .project h1 {
+                margin-top: 0;
+                text-align: right;
+            }
+            .project img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 5px;
+                margin-top: 10px;
+            }
+            .read-more {
+                margin-top: 20px;
+                text-align: right;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            {% for project in projects %}
+            <div class="project">
+                <h1>{{ project.title }}</h1>
+                <p>{{ project.description }}</p>
+                <p>Technology: {{ project.technology }}</p>
+                <img src="{% static project.image %}" alt="{{ project.title }} Image">
+                <button class="read-more">
+                    {% comment %} # #  Linking: app_name,and arguments {% endcomment %}
+                    <a href="{% url 'projects:projects_details' project.pk %}"> Read More</a>
+                </button>
+            </div>
+            {% endfor %}
+        </div>
+    </body>
+    </html>
+
+    {% endblock content %}
